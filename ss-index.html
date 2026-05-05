@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Social Sphere — Digital Growth Agency Ireland</title>
+<meta name="description" content="Social Sphere is Ireland's bold digital marketing agency. Social media, web design, Google Ads and Meta Ads for ambitious Irish businesses.">
+<style>
+/* ═══════════════════════════════════════════════
+   SOCIAL SPHERE — Shared Styles
+   Used across all pages
+═══════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
+
+:root {
+  --black:  #0a0a0a;
+  --white:  #f5f2ee;
+  --cream:  #ede8e0;
+  --accent: #ff4d1c;
+  --mid:    #1a1a1a;
+  --muted:  #888;
+  --border: rgba(255,255,255,0.07);
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top:0; left:0; right:0;
+  z-index: 100;
+  padding: 22px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(20px);
+  background: rgba(10,10,10,0.8);
+}
+.logo {
+  font-family:'Syne',sans-serif;
+  font-size:20px; font-weight:800;
+  letter-spacing:-0.5px;
+  color:var(--white);
+  text-decoration:none;
+}
+.logo span { color:var(--accent); }
+.nav-links { display:flex; gap:36px; list-style:none; align-items:center; }
+.nav-links a {
+  color:var(--muted);
+  text-decoration:none;
+  font-size:13px; font-weight:500;
+  letter-spacing:0.5px;
+  text-transform:uppercase;
+  transition:color 0.2s;
+}
+.nav-links a:hover,
+.nav-links a.active { color:var(--white); }
+.nav-cta {
+  background:var(--accent) !important;
+  color:var(--white) !important;
+  padding:10px 22px !important;
+  font-weight:600 !important;
+  transition:opacity 0.2s !important;
+}
+.nav-cta:hover { opacity:0.85; }
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 48px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.footer-logo {
+  font-family:'Syne',sans-serif;
+  font-size:18px; font-weight:800;
+  color:var(--white); text-decoration:none;
+}
+.footer-logo span { color:var(--accent); }
+.footer-links { display:flex; gap:28px; list-style:none; flex-wrap:wrap; }
+.footer-links a { font-size:13px; color:var(--muted); text-decoration:none; transition:color 0.2s; }
+.footer-links a:hover { color:var(--white); }
+.footer-copy { font-size:12px; color:var(--muted); opacity:0.45; }
+
+/* ── SHARED UTILITIES ── */
+.section-label {
+  font-size:11px; font-weight:700;
+  letter-spacing:3px; text-transform:uppercase;
+  color:var(--accent);
+  display:flex; align-items:center; gap:16px;
+  margin-bottom:32px;
+}
+.section-label::before { content:''; width:40px; height:1px; background:var(--accent); }
+
+.reveal {
+  opacity:0; transform:translateY(20px);
+  transition:opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+.btn-primary {
+  background:var(--accent); color:var(--white);
+  padding:16px 36px; border-radius:2px;
+  font-family:'Syne',sans-serif;
+  font-size:14px; font-weight:700;
+  letter-spacing:0.5px;
+  text-decoration:none; display:inline-block;
+  transition:opacity 0.2s, transform 0.2s;
+}
+.btn-primary:hover { opacity:0.88; transform:translateY(-2px); }
+
+.btn-ghost {
+  border:1px solid var(--border);
+  color:var(--white);
+  padding:16px 36px; border-radius:2px;
+  font-family:'Syne',sans-serif;
+  font-size:14px; font-weight:600;
+  text-decoration:none; display:inline-block;
+  transition:border-color 0.2s;
+}
+.btn-ghost:hover { border-color:rgba(255,255,255,0.25); }
+
+/* ── MOBILE NAV ── */
+@media (max-width:860px) {
+  nav { padding:18px 24px; }
+  .nav-links { display:none; }
+  footer { padding:40px 24px; flex-direction:column; align-items:flex-start; }
+}
+
+</style>
+<style>
+  .hero {
+    min-height:100vh; display:flex; flex-direction:column;
+    justify-content:flex-end; padding:0 60px 80px;
+    position:relative; overflow:hidden;
+  }
+  .hero-bg {
+    position:absolute; inset:0;
+    background:
+      radial-gradient(ellipse 60% 50% at 80% 20%, rgba(28,111,255,0.10) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 15% 80%, rgba(255,77,28,0.08) 0%, transparent 60%);
+  }
+  .hero-tag {
+    font-size:11px; font-weight:700; letter-spacing:3px;
+    text-transform:uppercase; color:var(--accent);
+    display:flex; align-items:center; gap:14px;
+    margin-bottom:28px; position:relative;
+    opacity:0; animation:fadeUp 0.8s 0.2s forwards;
+  }
+  .hero-tag::before { content:''; width:32px; height:1px; background:var(--accent); }
+  .hero h1 {
+    font-family:'Syne',sans-serif;
+    font-size:clamp(52px,9vw,118px);
+    font-weight:800; line-height:0.93;
+    letter-spacing:-3px; max-width:880px;
+    position:relative;
+    opacity:0; animation:fadeUp 0.9s 0.35s forwards;
+  }
+  .hero h1 em { font-style:normal; color:transparent; -webkit-text-stroke:1px rgba(245,242,238,0.25); }
+  .hero-bottom {
+    display:flex; align-items:flex-end;
+    justify-content:space-between; margin-top:60px; gap:40px;
+    position:relative;
+    opacity:0; animation:fadeUp 0.8s 0.5s forwards;
+  }
+  .hero-desc { max-width:380px; color:var(--muted); font-size:17px; font-weight:300; line-height:1.75; }
+  .hero-actions { display:flex; align-items:center; gap:20px; flex-shrink:0; }
+
+  /* Marquee */
+  .marquee-wrap {
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+    padding:16px 0; overflow:hidden; background:#111;
+  }
+  .marquee-track {
+    display:flex; gap:56px;
+    animation:marquee 22s linear infinite;
+    white-space:nowrap; width:max-content;
+  }
+  .marquee-item {
+    font-family:'Syne',sans-serif; font-size:12px;
+    font-weight:700; letter-spacing:3px; text-transform:uppercase;
+    color:var(--muted); display:flex; align-items:center; gap:24px;
+  }
+  .marquee-item::after { content:'◆'; color:var(--accent); font-size:7px; }
+
+  /* Services preview */
+  .services-preview { padding:120px 60px; }
+  .services-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:72px; gap:60px; }
+  .services-title { font-family:'Syne',sans-serif; font-size:clamp(36px,4vw,58px); font-weight:800; letter-spacing:-2px; line-height:1; max-width:500px; }
+  .services-desc { max-width:360px; color:var(--muted); font-size:16px; font-weight:300; line-height:1.8; padding-top:8px; }
+  .services-grid { display:grid; grid-template-columns:1fr 1fr; gap:2px; background:var(--border); border:1px solid var(--border); }
+  .service-card {
+    background:var(--black); padding:52px 44px;
+    position:relative; overflow:hidden; transition:background 0.3s;
+  }
+  .service-card:hover { background:#111; }
+  .service-card::before { content:''; position:absolute; top:0; left:0; width:3px; height:0; background:var(--accent); transition:height 0.4s; }
+  .service-card:hover::before { height:100%; }
+  .s-num { font-family:'Syne',sans-serif; font-size:11px; font-weight:700; color:var(--accent); letter-spacing:2px; margin-bottom:28px; }
+  .s-icon { font-size:32px; margin-bottom:20px; display:block; }
+  .service-card h3 { font-family:'Syne',sans-serif; font-size:24px; font-weight:800; letter-spacing:-0.5px; margin-bottom:14px; }
+  .service-card p { color:var(--muted); font-size:14px; line-height:1.8; font-weight:300; }
+  .s-link { display:inline-flex; align-items:center; gap:8px; margin-top:24px; font-family:'Syne',sans-serif; font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--accent); text-decoration:none; }
+  .s-link::after { content:'→'; }
+
+  /* Stats */
+  .stats { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+  .stat-item { background:var(--black); padding:60px 32px; text-align:center; }
+  .stat-num { font-family:'Syne',sans-serif; font-size:clamp(40px,5vw,68px); font-weight:800; letter-spacing:-3px; line-height:1; margin-bottom:12px; }
+  .stat-num span { color:var(--accent); }
+  .stat-label { font-size:12px; color:var(--muted); letter-spacing:0.5px; }
+
+  /* Why section */
+  .why { padding:120px 60px; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+  .why-title { font-family:'Syne',sans-serif; font-size:clamp(34px,4vw,54px); font-weight:800; letter-spacing:-1.5px; line-height:1.05; margin-bottom:28px; }
+  .why-title em { font-style:normal; color:var(--accent); }
+  .why p { color:var(--muted); font-size:16px; font-weight:300; line-height:1.8; margin-bottom:20px; }
+  .why-cards { display:flex; flex-direction:column; gap:2px; }
+  .why-card { background:#111; border:1px solid var(--border); padding:28px 32px; display:flex; align-items:flex-start; gap:20px; }
+  .why-card-icon { font-size:24px; flex-shrink:0; }
+  .why-card h4 { font-family:'Syne',sans-serif; font-size:16px; font-weight:700; margin-bottom:6px; }
+  .why-card p { color:var(--muted); font-size:13px; line-height:1.7; font-weight:300; margin-bottom:0; }
+
+  /* CTA */
+  .cta { padding:140px 60px; text-align:center; position:relative; overflow:hidden; border-top:1px solid var(--border); }
+  .cta::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 60% 50% at 50% 50%, rgba(255,77,28,0.07) 0%, transparent 70%); }
+  .cta h2 { font-family:'Syne',sans-serif; font-size:clamp(40px,6vw,86px); font-weight:800; letter-spacing:-3px; line-height:0.93; margin-bottom:32px; position:relative; }
+  .cta p { color:var(--muted); font-size:18px; font-weight:300; margin-bottom:48px; position:relative; }
+  .cta-btns { display:flex; gap:16px; justify-content:center; position:relative; flex-wrap:wrap; }
+
+  @keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+  @media(max-width:860px){
+    .hero{padding:0 24px 60px;}
+    .hero h1{font-size:52px;letter-spacing:-2px;}
+    .hero-bottom{flex-direction:column;align-items:flex-start;}
+    .hero-actions{flex-direction:column;align-items:flex-start;gap:14px;}
+    .services-preview{padding:80px 24px;}
+    .services-header{flex-direction:column;}
+    .services-grid{grid-template-columns:1fr;}
+    .stats{grid-template-columns:1fr 1fr;}
+    .why{grid-template-columns:1fr;padding:80px 24px;gap:48px;}
+    .cta{padding:100px 24px;}
+    .cta-btns{flex-direction:column;align-items:center;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Social<span>Sphere</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html" class="nav-cta">Get Started</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-tag">Ireland's Digital Growth Agency</div>
+  <h1>Grow <em>Bold.</em><br>Dominate<br>Your Market.</h1>
+  <div class="hero-bottom">
+    <p class="hero-desc">Social Sphere helps Irish businesses build powerful digital presences — through social media, web design, and precision-targeted paid ads.</p>
+    <div class="hero-actions">
+      <a href="contact.html" class="btn-primary">Start Growing →</a>
+      <a href="services.html" class="btn-ghost">Our Services</a>
+    </div>
+  </div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Social Media Management</span>
+    <span class="marquee-item">Website Design & Dev</span>
+    <span class="marquee-item">Google Ads</span>
+    <span class="marquee-item">Facebook & Instagram Ads</span>
+    <span class="marquee-item">Free Website Hosting</span>
+    <span class="marquee-item">WhatsApp Support</span>
+    <span class="marquee-item">Social Media Management</span>
+    <span class="marquee-item">Website Design & Dev</span>
+    <span class="marquee-item">Google Ads</span>
+    <span class="marquee-item">Facebook & Instagram Ads</span>
+    <span class="marquee-item">Free Website Hosting</span>
+    <span class="marquee-item">WhatsApp Support</span>
+  </div>
+</div>
+
+<section class="services-preview">
+  <div class="services-header reveal">
+    <div>
+      <div class="section-label">What We Do</div>
+      <h2 class="services-title">Every channel.<br>One partner.</h2>
+    </div>
+    <p class="services-desc">We handle your entire digital presence so you can focus on running your business.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="s-num">01</div>
+      <span class="s-icon">📱</span>
+      <h3>Social Media Management</h3>
+      <p>Content, scheduling, community management and monthly reporting across all platforms.</p>
+      <a href="services.html" class="s-link">Learn more</a>
+    </div>
+    <div class="service-card reveal">
+      <div class="s-num">02</div>
+      <span class="s-icon">🌐</span>
+      <h3>Website Design & Dev</h3>
+      <p>Fast, modern websites built to convert — included and hosted free in every package.</p>
+      <a href="services.html" class="s-link">Learn more</a>
+    </div>
+    <div class="service-card reveal">
+      <div class="s-num">03</div>
+      <span class="s-icon">🎯</span>
+      <h3>Google Ads</h3>
+      <p>Show up when your customers are searching. Expert campaign management and optimisation.</p>
+      <a href="services.html" class="s-link">Learn more</a>
+    </div>
+    <div class="service-card reveal">
+      <div class="s-num">04</div>
+      <span class="s-icon">⚡</span>
+      <h3>Facebook & Instagram Ads</h3>
+      <p>Full-funnel Meta campaigns that generate leads and drive sales at scale.</p>
+      <a href="services.html" class="s-link">Learn more</a>
+    </div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat-item reveal"><div class="stat-num">3<span>x</span></div><div class="stat-label">Average ROAS</div></div>
+  <div class="stat-item reveal"><div class="stat-num">48<span>h</span></div><div class="stat-label">Onboarding</div></div>
+  <div class="stat-item reveal"><div class="stat-num">100<span>%</span></div><div class="stat-label">Dedicated Team</div></div>
+  <div class="stat-item reveal"><div class="stat-num">€0<span></span></div><div class="stat-label">Website Hosting Cost</div></div>
+</div>
+
+<section class="why">
+  <div class="reveal">
+    <div class="section-label">Why Social Sphere</div>
+    <h2 class="why-title">Not just another<br><em>agency.</em></h2>
+    <p>Most agencies hide behind email chains and monthly PDFs. We do things differently — every client gets a private WhatsApp group with their full team, real-time updates, and a dedicated account manager who actually picks up the phone.</p>
+    <p>We're based in Ireland, built for Irish businesses, and priced to deliver real ROI.</p>
+    <br>
+    <a href="about.html" class="btn-primary">About Us →</a>
+  </div>
+  <div class="why-cards reveal">
+    <div class="why-card">
+      <div class="why-card-icon">💬</div>
+      <div>
+        <h4>WhatsApp Support Group</h4>
+        <p>Your dedicated team in one group. Content delivered, feedback given, results reported — all in one place.</p>
+      </div>
+    </div>
+    <div class="why-card">
+      <div class="why-card-icon">🌐</div>
+      <div>
+        <h4>Free Website Included</h4>
+        <p>Every package includes a professionally built and hosted website. No extra cost, no hidden fees.</p>
+      </div>
+    </div>
+    <div class="why-card">
+      <div class="why-card-icon">📊</div>
+      <div>
+        <h4>Transparent Reporting</h4>
+        <p>Weekly or monthly reports so you always know exactly what we're doing and the results it's generating.</p>
+      </div>
+    </div>
+    <div class="why-card">
+      <div class="why-card-icon">🇮🇪</div>
+      <div>
+        <h4>Irish Business Focus</h4>
+        <p>We understand the Irish market, Irish customers, and what actually drives growth for businesses here.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <h2 class="reveal">Ready to<br><em style="font-style:normal;color:var(--accent)">grow</em> your<br>business?</h2>
+  <p class="reveal">Book a free 30-minute strategy call. No pitch — just real advice.</p>
+  <div class="cta-btns reveal">
+    <a href="contact.html" class="btn-primary">Book a Free Call →</a>
+    <a href="pricing.html" class="btn-ghost">View Pricing</a>
+  </div>
+</section>
+
+<footer>
+  <a href="index.html" class="footer-logo">Social<span>Sphere</span></a>
+  <ul class="footer-links">
+    <li><a href="services.html">Services</a></li>
+    <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <span class="footer-copy">© 2026 SocialSphere. Ireland. All rights reserved.</span>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries=>{
+    entries.forEach((e,i)=>{ if(e.isIntersecting){ setTimeout(()=>e.target.classList.add('visible'),i*100); obs.unobserve(e.target); } });
+  },{threshold:0.1});
+  reveals.forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services — Social Sphere</title>
+<meta name="description" content="Social media management, website design, Google Ads and Meta Ads for Irish businesses. Everything digital under one roof.">
+<style>
+/* ═══════════════════════════════════════════════
+   SOCIAL SPHERE — Shared Styles
+   Used across all pages
+═══════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
+
+:root {
+  --black:  #0a0a0a;
+  --white:  #f5f2ee;
+  --cream:  #ede8e0;
+  --accent: #ff4d1c;
+  --mid:    #1a1a1a;
+  --muted:  #888;
+  --border: rgba(255,255,255,0.07);
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top:0; left:0; right:0;
+  z-index: 100;
+  padding: 22px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(20px);
+  background: rgba(10,10,10,0.8);
+}
+.logo {
+  font-family:'Syne',sans-serif;
+  font-size:20px; font-weight:800;
+  letter-spacing:-0.5px;
+  color:var(--white);
+  text-decoration:none;
+}
+.logo span { color:var(--accent); }
+.nav-links { display:flex; gap:36px; list-style:none; align-items:center; }
+.nav-links a {
+  color:var(--muted);
+  text-decoration:none;
+  font-size:13px; font-weight:500;
+  letter-spacing:0.5px;
+  text-transform:uppercase;
+  transition:color 0.2s;
+}
+.nav-links a:hover,
+.nav-links a.active { color:var(--white); }
+.nav-cta {
+  background:var(--accent) !important;
+  color:var(--white) !important;
+  padding:10px 22px !important;
+  font-weight:600 !important;
+  transition:opacity 0.2s !important;
+}
+.nav-cta:hover { opacity:0.85; }
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 48px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.footer-logo {
+  font-family:'Syne',sans-serif;
+  font-size:18px; font-weight:800;
+  color:var(--white); text-decoration:none;
+}
+.footer-logo span { color:var(--accent); }
+.footer-links { display:flex; gap:28px; list-style:none; flex-wrap:wrap; }
+.footer-links a { font-size:13px; color:var(--muted); text-decoration:none; transition:color 0.2s; }
+.footer-links a:hover { color:var(--white); }
+.footer-copy { font-size:12px; color:var(--muted); opacity:0.45; }
+
+/* ── SHARED UTILITIES ── */
+.section-label {
+  font-size:11px; font-weight:700;
+  letter-spacing:3px; text-transform:uppercase;
+  color:var(--accent);
+  display:flex; align-items:center; gap:16px;
+  margin-bottom:32px;
+}
+.section-label::before { content:''; width:40px; height:1px; background:var(--accent); }
+
+.reveal {
+  opacity:0; transform:translateY(20px);
+  transition:opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+.btn-primary {
+  background:var(--accent); color:var(--white);
+  padding:16px 36px; border-radius:2px;
+  font-family:'Syne',sans-serif;
+  font-size:14px; font-weight:700;
+  letter-spacing:0.5px;
+  text-decoration:none; display:inline-block;
+  transition:opacity 0.2s, transform 0.2s;
+}
+.btn-primary:hover { opacity:0.88; transform:translateY(-2px); }
+
+.btn-ghost {
+  border:1px solid var(--border);
+  color:var(--white);
+  padding:16px 36px; border-radius:2px;
+  font-family:'Syne',sans-serif;
+  font-size:14px; font-weight:600;
+  text-decoration:none; display:inline-block;
+  transition:border-color 0.2s;
+}
+.btn-ghost:hover { border-color:rgba(255,255,255,0.25); }
+
+/* ── MOBILE NAV ── */
+@media (max-width:860px) {
+  nav { padding:18px 24px; }
+  .nav-links { display:none; }
+  footer { padding:40px 24px; flex-direction:column; align-items:flex-start; }
+}
+
+</style>
+<style>
+  .page-hero { padding:160px 60px 100px; border-bottom:1px solid var(--border); }
+  .page-hero h1 { font-family:'Syne',sans-serif; font-size:clamp(48px,8vw,100px); font-weight:800; letter-spacing:-3px; line-height:0.93; margin-bottom:28px; }
+  .page-hero h1 em { font-style:normal; color:var(--accent); }
+  .page-hero p { max-width:500px; color:var(--muted); font-size:18px; font-weight:300; line-height:1.8; }
+
+  .service-section { padding:100px 60px; border-bottom:1px solid var(--border); display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; }
+  .service-section:nth-child(even) { background:#0d0d0d; }
+  .service-num { font-family:'Syne',sans-serif; font-size:80px; font-weight:800; color:transparent; -webkit-text-stroke:1px rgba(255,255,255,0.06); line-height:1; margin-bottom:16px; }
+  .service-section h2 { font-family:'Syne',sans-serif; font-size:clamp(28px,3.5vw,44px); font-weight:800; letter-spacing:-1px; line-height:1.05; margin-bottom:20px; }
+  .service-section h2 em { font-style:normal; color:var(--accent); }
+  .service-section > div > p { color:var(--muted); font-size:16px; font-weight:300; line-height:1.85; margin-bottom:32px; }
+  .feature-list { list-style:none; display:flex; flex-direction:column; gap:12px; margin-bottom:36px; }
+  .feature-list li { font-size:14px; color:rgba(245,242,238,0.7); display:flex; align-items:center; gap:12px; font-weight:300; }
+  .feature-list li::before { content:''; width:20px; height:1px; background:var(--accent); flex-shrink:0; }
+
+  .service-detail-box { background:#111; border:1px solid var(--border); padding:40px; }
+  .detail-title { font-family:'Syne',sans-serif; font-size:13px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--accent); margin-bottom:24px; }
+  .detail-item { padding:16px 0; border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; }
+  .detail-item:last-child { border-bottom:none; }
+  .detail-item span:first-child { font-size:14px; color:var(--muted); font-weight:300; }
+  .detail-item span:last-child { font-size:13px; font-weight:600; color:var(--white); }
+  .detail-item span.yes { color:#4ade80; }
+  .detail-item span.accent { color:var(--accent); }
+
+  @media(max-width:860px){
+    .page-hero{padding:120px 24px 60px;}
+    .service-section{grid-template-columns:1fr;padding:60px 24px;gap:40px;}
+  }
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="logo">Social<span>Sphere</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html" class="active">Services</a></li>
+    <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html" class="nav-cta">Get Started</a></li>
+  </ul>
+</nav>
+
+<section class="page-hero">
+  <div class="section-label">What We Offer</div>
+  <h1>Every service<br>your business<br><em>needs.</em></h1>
+  <p>Four core services. One agency. One monthly retainer. We handle everything so you can focus on running your business.</p>
+</section>
+
+<!-- Social Media -->
+<section class="service-section">
+  <div class="reveal">
+    <div class="service-num">01</div>
+    <h2>Social Media<br><em>Management</em></h2>
+    <p>We create, schedule and manage your entire social media presence across Instagram, Facebook, LinkedIn and TikTok. Every post is branded, on-strategy, and designed to grow your audience and convert followers into customers.</p>
+    <ul class="feature-list">
+      <li>Full content calendar planned monthly in advance</li>
+      <li>Branded graphics and short-form video content</li>
+      <li>Captions written in your brand voice</li>
+      <li>Community management and DM replies</li>
+      <li>Monthly analytics report with growth insights</li>
+      <li>Instagram, Facebook, LinkedIn and TikTok</li>
+    </ul>
+    <a href="contact.html" class="btn-primary">Get Started →</a>
+  </div>
+  <div class="service-detail-box reveal">
+    <div class="detail-title">What's included</div>
+    <div class="detail-item"><span>Platforms managed</span><span class="accent">2–All platforms</span></div>
+    <div class="detail-item"><span>Posts per month</span><span class="accent">12–32+ posts</span></div>
+    <div class="detail-item"><span>Stories & Reels</span><span class="accent">Up to 16/month</span></div>
+    <div class="detail-item"><span>Branded graphics</span><span class="yes">✓ Included</span></div>
+    <div class="detail-item"><span>Community management</span><span class="yes">✓ Growth+</span></div>
+    <div class="detail-item"><span>Content calendar</span><span class="yes">✓ All plans</span></div>
+    <div class="detail-item"><span>Monthly report</span><span class="yes">✓ All plans</span></div>
+    <div class="detail-item"><span>WhatsApp group</span><span class="yes">✓ All plans</span></div>
+  </div>
+</section>
+
+<!-- Web Design -->
+<section class="service-section">
+  <div class="reveal">
+    <div class="service-num">02</div>
+    <h2>Website Design<br>& <em>Development</em></h2>
+    <p>Every Social Sphere package includes a professionally designed website — built by us, hosted by us, maintained by us. No extra cost. We build fast, mobile-first websites that convert visitors into leads from day one.</p>
+    <ul class="feature-list">
+      <li>Custom design — no templates ever used</li>
+      <li>Mobile-first and lightning fast</li>
+      <li>SEO-optimised from day one</li>
+      <li>Lead capture form connected to your email</li>
+      <li>Free hosting on our servers — no monthly fees</li>
+      <li>Ongoing updates and maintenance included</li>
+    </ul>
+    <a href="contact.html" class="btn-primary">Get Started →</a>
+  </div>
+  <div class="service-detail-box reveal">
+    <div class="detail-title">Website by package</div>
+    <div class="detail-item"><span>Starter</span><span class="accent">1-page landing page</span></div>
+    <div class="detail-item"><span>Growth</span><span class="accent">Full 5-page website</span></div>
+    <div class="detail-item"><span>Enterprise</span><span class="accent">Premium custom build</span></div>
+    <div class="detail-item"><span>Hosting cost</span><span class="yes">€0 — free forever</span></div>
+    <div class="detail-item"><span>Custom domain</span><span class="yes">✓ All plans</span></div>
+    <div class="detail-item"><span>Lead capture form</span><span class="yes">✓ All plans</span></div>
+    <div class="detail-item"><span>Ongoing maintenance</span><span class="yes">✓ All plans</span></div>
+    <div class="detail-item"><span>Page speed optimised</span><span class="yes">✓ All plans</span></div>
+  </div>
+</section>
+
+<!-- Google Ads -->
+<section class="service-section">
+  <div class="reveal">
+    <div class="service-num">03</div>
+    <h2>Google Ads<br><em>Management</em></h2>
+    <p>Show up at the exact moment your customers are searching for what you offer. We build and manage Google Search, Display and Shopping campaigns that drive qualified traffic and maximise your return on ad spend.</p>
+    <ul class="feature-list">
+      <li>Search, Display and Shopping campaigns</li>
+      <li>Thorough keyword research and negative lists</li>
+      <li>Compelling ad copy written and tested continuously</li>
+      <li>Conversion tracking setup via Google Tag Manager</li>
+      <li>Daily campaign monitoring and budget optimisation</li>
+      <li>Weekly performance reports</li>
+    </ul>
+    <a href="contact.html" class="btn-primary">Get Started →</a>
+  </div>
+  <div class="service-detail-box reveal">
+    <div class="detail-title">Campaign details</div>
+    <div class="detail-item"><span>Campaign types</span><span class="accent">Search, Display, Shopping</span></div>
+    <div class="detail-item"><span>Ad copy</span><span class="yes">✓ Written & tested</span></div>
+    <div class="detail-item"><span>Conversion tracking</span><span class="yes">✓ Full setup</span></div>
+    <div class="detail-item"><span>Budget management</span><span class="yes">✓ Daily</span></div>
+    <div class="detail-item"><span>Reporting</span><span class="accent">Weekly + Monthly</span></div>
+    <div class="detail-item"><span>Ad spend managed</span><span class="accent">€500–€20,000+/mo</span></div>
+    <div class="detail-item"><span>Available on</span><span class="accent">Growth & Enterprise</span></div>
+    <div class="detail-item"><span>Average ROAS</span><span class="yes">3x+</span></div>
+  </div>
+</section>
+
+<!-- Meta Ads -->
+<section class="service-section">
+  <div class="reveal">
+    <div class="service-num">04</div>
+    <h2>Facebook & Instagram<br><em>Ads</em></h2>
+    <p>Reach your ideal customers with precision targeting on Meta's platforms. We build full-funnel campaigns — from awareness to conversion — with creative strategy, audience targeting, and daily optimisation to maximise your results.</p>
+    <ul class="feature-list">
+      <li>Custom audiences, lookalikes and retargeting</li>
+      <li>Ad creative design and copywriting</li>
+      <li>Meta Pixel and Conversions API setup</li>
+      <li>Full-funnel campaign strategy</li>
+      <li>Daily budget monitoring and optimisation</li>
+      <li>Weekly and monthly performance reports</li>
+    </ul>
+    <a href="contact.html" class="btn-primary">Get Started →</a>
+  </div>
+  <div class="service-detail-box reveal">
+    <div class="detail-title">What's included</div>
+    <div class="detail-item"><span>Platforms</span><span class="accent">Facebook & Instagram</span></div>
+    <div class="detail-item"><span>Ad creative</span><span class="yes">✓ Designed for you</span></div>
+    <div class="detail-item"><span>Ad copywriting</span><span class="yes">✓ Included</span></div>
+    <div class="detail-item"><span>Pixel & API setup</span><span class="yes">✓ Full setup</span></div>
+    <div class="detail-item"><span>Retargeting</span><span class="yes">✓ Enterprise</span></div>
+    <div class="detail-item"><span>Audience research</span><span class="yes">✓ All campaigns</span></div>
+    <div class="detail-item"><span>Available on</span><span class="accent">Growth & Enterprise</span></div>
+    <div class="detail-item"><span>Reporting</span><span class="accent">Weekly + Monthly</span></div>
+  </div>
+</section>
+
+<footer>
+  <a href="index.html" class="footer-logo">Social<span>Sphere</span></a>
+  <ul class="footer-links">
+    <li><a href="services.html">Services</a></li>
+    <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <span class="footer-copy">© 2026 SocialSphere. Ireland.</span>
+</footer>
+<script>
+  const reveals=document.querySelectorAll('.reveal');
+  const obs=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*100);obs.unobserve(e.target);}});},{threshold:0.1});
+  reveals.forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
